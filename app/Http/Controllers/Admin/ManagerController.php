@@ -63,7 +63,7 @@ class ManagerController extends Controller
         $manager->status = $request->status;
         $manager->save();
 
-        session()->flash('success', 'Manager updated successfully');
+        session()->flash('success', 'Manager updated successfully !!');
     	return redirect()->route('admin.manager'); 
     }
 
@@ -72,7 +72,7 @@ class ManagerController extends Controller
     	$manager = User::find($id);
         $manager->delete();
 
-        session()->flash('success', 'A manager deleted successfully');
+        session()->flash('success', 'A manager deleted successfully !!');
         return redirect()->back();
     }
 

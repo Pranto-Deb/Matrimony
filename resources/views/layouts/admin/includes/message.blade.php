@@ -17,8 +17,8 @@
 
 @if(Session::has('success'))
 <div class="container">
-    <div class="row justify-content-center mt-1">
-      <div class="col-md-8">
+    <div class="row justify-content-center text-center mt-1">
+      <div class="col-md-4">
 	  	<div class="alert alert-success">
 			<p>{{ Session::get('success') }}</p>
 	  	</div>
