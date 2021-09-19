@@ -13,8 +13,8 @@
                     @method('PUT')
                 @else
                 <form role="form" action="{{ route('store.manager') }}" method="POST" enctype="multipart/form-data">
-                    @endif
-                    @csrf
+                @endif
+                @csrf
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -40,9 +40,9 @@
                                     <label class="exampleInputFile">Status<span class="text-danger"></span></label>
                                     <select name="status" class="form-control">
                                         <option value="0" {{ !empty($manager) && $manager->status == '0' ? 'selected' : '' }}>Pending</option>
-                                        <option value="1"  {{ !empty($manager) && $manager->status == '1' ? 'selected' : '' }}>Active</option>
-                                        <option value="2"  {{ !empty($manager) && $manager->status == '2' ? 'selected' : '' }}>Block</option>
-                                        <option value="3"  {{ !empty($manager) && $manager->status == '3' ? 'selected' : '' }}>Suspend</option>
+                                        <option value="1" {{ !empty($manager) && $manager->status == '1' ? 'selected' : '' }}>Active</option>
+                                        <option value="2" {{ !empty($manager) && $manager->status == '2' ? 'selected' : '' }}>Block</option>
+                                        <option value="3" {{ !empty($manager) && $manager->status == '3' ? 'selected' : '' }}>Suspend</option>
                                     </select> 
                                 </div>
                             </div>

@@ -69,7 +69,7 @@
             </div> 
             <div class="card-body">
                 <table class="table table-bordered">
-                    <thead>                  
+                    <thead>
                         <tr>
                             <th style="width: 10px">#</th>
                             <th>Name</th>
@@ -79,22 +79,55 @@
                             <th>Address</th>
                             <th>Image</th>
                             <th style="width: 40px">Status</th>
+                            <th style="width: 40px">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                    @if(!empty($users) && count($users) > 0 )
+                        @foreach($users as $user)
                         <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>
+                            @if($user->gender == '0')
+                                Male
+                            @elseif($user->gender == '1')
+                                Female
+                            @endif
+                        </td>
+                        <td>{{ $user->age }}</td>
+                        <td>{{ $user->height }}</td>
+                        <td>{{ $user->weight }}</td>
+                        <td><img src="{{ asset('images/'.$user->image) }}" width="50" style="border-radius: inherit;" alt=""></td>
+                        <td>
+                            @if($user->status == '0')
+                                <span class="badge badge-info">Pending</span>
+                            @elseif($user->status == '1')
+                                <span class="badge badge-success">Active</span>
+                            @elseif($user->status == '2')
+                                <span class="badge badge-danger">Block</span>
+                            @elseif($user->status == '3')
+                                <span class="badge badge-warning">Suspend</span>
+                            @endif
+                        </td>
+                        <td class="text-center">
+                            @if(auth()->user()->role == '2')
+                            <a href="{{ route('show.user', $user->id) }}" class="btn btn-success btn-sm btn-block">View</a>
+                            <a href="{{ route('edit.user', $user->id) }}" class="btn btn-info btn-sm btn-block">Edit</a>
+                            <a href="{{ route('delete.user', $user->id) }}" class="btn btn-danger btn-sm btn-block">Delete</a>
+                            @else
+                            <a href="{{ route('manager.show.user', $user->id) }}" class="btn btn-success btn-sm btn-block">View</a>
+                            <a href="{{ route('manager.edit.user', $user->id) }}" class="btn btn-info btn-sm btn-block">Edit</a>
+                            @endif
+                        </td>
                         </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>
             <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-right">
-                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                </ul>
+                {{ $users->links() }}
             </div>
         </div>            
     </div>

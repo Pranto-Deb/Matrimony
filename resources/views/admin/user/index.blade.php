@@ -9,9 +9,9 @@
                         <h3 class="card-title">User Table</h3>
                         <div class="heading-elements">
                         @if(auth()->user()->role == '2')
-                        <a href="{{ route('create.user') }}" class="btn btn-success btn-sm mr-4 mt-2 float-right"><i class="icon-plus2"></i> Add User</a>
+                            <a href="{{ route('create.user') }}" class="btn btn-success btn-sm mr-4 mt-2 float-right"><i class="icon-plus2"></i>Add User</a>
                         @else
-                        <a href="{{ route('manager.create.user') }}" class="btn btn-success btn-sm mr-4 mt-2 float-right"><i class="icon-plus2"></i> Add User</a>
+                            <a href="{{ route('manager.create.user') }}" class="btn btn-success btn-sm mr-4 mt-2 float-right"><i class="icon-plus2"></i>Add User</a>
                         @endif
                         </div> 
                     </div>

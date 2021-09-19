@@ -11,14 +11,15 @@ class CustomerController extends Controller
 {
     public function search(Request $request)
     {
+        $sent_ids = $request->user()->send_proposals();
     	$search = $request->search;
-            $users = User::where('name', 'like', '%'.$search.'%')
-                        ->where('role', '1')
-                        ->where('status', '1')
-                        ->where('gender', '!=', auth()->user()->gender)
-                        ->get();
+        $users = User::where('name', 'like', '%'.$search.'%')
+                    ->where('role', '1')
+                    ->where('status', '1')
+                    ->where('gender', '!=', auth()->user()->gender)
+                    ->get();
             
-            return view('customer.search.search_profile', compact('users'));
+        return view('customer.search.search_profile', compact('users', 'sent_ids'));
     }
 
     public function proposal(Request $request, $id)
@@ -28,12 +29,12 @@ class CustomerController extends Controller
         $proposal->receiver_id = $request->id;
         $proposal->status = 0;
         $proposal->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'A proposal has sent successfully!!');
     }
 
     public function sendProposal()
     {
-        $proposals = Proposal::where( 'sender_id', auth()->id())->with('receiver')->simplePaginate(10);
+        $proposals = Proposal::where('sender_id', auth()->id())->with('receiver')->simplePaginate(10);
         return view('customer.interest.proposals', compact('proposals'));
     }
 
@@ -44,12 +45,12 @@ class CustomerController extends Controller
         return redirect()->back();    
     }
 
-    public function receiveProposal($id)
+    public function acceptProposal($id)
     {
         $proposal = Proposal::find($id);
         $proposal->status = 1;
         $proposal->save();
-        return redirect()->back();   
+        return redirect()->back(); 
     }
 
     public function reject($id)
@@ -60,5 +61,4 @@ class CustomerController extends Controller
         return redirect()->back();   
     }
     
-   
 }

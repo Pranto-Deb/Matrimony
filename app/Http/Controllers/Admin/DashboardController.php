@@ -25,8 +25,9 @@ class DashboardController extends Controller
 
     public function user_dashboard()
     {
-        $proposals = Proposal::where( 'receiver_id', auth()->id())->with('sender')->simplePaginate(10);
-        return view('customer.dashboard', compact('proposals'));
+        $user = User::where('id', auth()->id())->get();
+        $proposals = Proposal::where('receiver_id', auth()->id())->with('sender')->simplePaginate(10);
+        return view('customer.dashboard', compact('proposals', 'user'));
     }
 
     public function admin_dashboard()

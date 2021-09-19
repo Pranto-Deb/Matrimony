@@ -17,12 +17,12 @@
                                     <th>Email</th>
                                     <th>Phone No</th>
                                     <th style="width: 40px">Status</th>
-                                    <th style="width: 20px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                
+                            @if(!empty($proposals) && count($proposals) > 0)
                                 @foreach($proposals as $proposal)
-                                    @if(!empty($proposal))
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $proposal->receiver->name }}</td>
@@ -33,16 +33,13 @@
                                                 <span class="badge badge-info">Pending</span>
                                             @elseif($proposal->status == '1')
                                                 <span class="badge badge-success">Accepted</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($proposal->status == '0')
-                                            <a href="{{ route('cancel.request', $proposal->id) }}" class="btn btn-danger btn-sm btn-block">Cancel</a>
+                                            @elseif($proposal->status == '2')
+                                                <span class="badge badge-danger">Rejected</span>
                                             @endif
                                         </td>
                                     </tr> 
-                                    @endif
                                 @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </div>

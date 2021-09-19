@@ -70,7 +70,7 @@ Route::group(['prefix' => '/user', 'middleware'=>['auth:sanctum', 'user']], func
 	Route::get('/search', [CustomerController::class, 'search'])->name('search');
 	Route::get('/proposal/{id}', [CustomerController::class, 'proposal'])->name('send.proposal');
 	Route::get('/proposal', [CustomerController::class, 'sendProposal'])->name('user.proposals');
-	Route::get('/cancel/request/{id}', [CustomerController::class, 'cancel'])->name('cancel.request');
+	Route::get('/cancel/proposal/{id}', [CustomerController::class, 'cancel'])->name('cancel.proposal');
 	Route::get('/proposal/accept/{id}', [CustomerController::class, 'acceptProposal'])->name('accept.request');
 	Route::get('/proposal/reject/{id}', [CustomerController::class, 'reject'])->name('reject.request');
 	Route::put('/update/profile', [UpdateController::class, 'updateProfile'])->name('update.profile');

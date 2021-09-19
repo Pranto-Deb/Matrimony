@@ -82,4 +82,5 @@ class User extends Authenticatable
     {
     	return $this->hasMany(Proposal::class, 'receiver_id', 'id');
     }
+
 }

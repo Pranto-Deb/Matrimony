@@ -11,9 +11,7 @@ class ManagerController extends Controller
 {
     public function index()
     {
-        $managers = User::where('role', 3)
-                        ->orderBy('id', 'desc')
-                        ->simplePaginate(10);
+        $managers = User::where('role', 3)->orderBy('id', 'desc')->simplePaginate(10);
         return view('admin.manager.index', compact('managers'));
     }
 
@@ -35,11 +33,11 @@ class ManagerController extends Controller
         $manager->email = $request->email;
         $manager->phone_no = $request->phone_no;
         $manager->status = $request->status;
+        $manager->role = User::Roles['manager'];
         $manager->password = Hash::make(123456789);
         $manager->save();
 
-        session()->flash('success', 'A manager added successfully');
-    	return redirect()->route('admin.manager');   
+    	return redirect()->route('admin.manager')->with('success', 'A manager added successfully!!');   
     }
 
     public function edit($id)
@@ -61,10 +59,10 @@ class ManagerController extends Controller
         $manager->email = $request->email;
         $manager->phone_no = $request->phone_no;
         $manager->status = $request->status;
+        $manager->role = User::Roles['manager'];
         $manager->save();
 
-        session()->flash('success', 'Manager updated successfully !!');
-    	return redirect()->route('admin.manager'); 
+    	return redirect()->route('admin.manager')->with('success', 'A manager updated successfully!!'); 
     }
 
     public function delete($id)
@@ -72,8 +70,7 @@ class ManagerController extends Controller
     	$manager = User::find($id);
         $manager->delete();
 
-        session()->flash('success', 'A manager deleted successfully !!');
-        return redirect()->back();
+        return redirect()->back()->with('success', 'A manager deleted successfully!!');
     }
 
 }

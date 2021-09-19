@@ -11,29 +11,29 @@
         <div class="collapse navbar-collapse order-3" id="navbarCollapse">
             <ul class="navbar-nav">
                 @if(auth()->user()->role == '1')
-                <li class="nav-item">
-                    <a href="{{ route('user.dashboard') }}" class="nav-link">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('user.proposals') }}" class="nav-link">Proposal List</a>
-                </li>
-                @elseif(auth()->user()->role == '2')
-                <li class="nav-item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.user') }}" class="nav-link">User</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.manager') }}" class="nav-link">Manager</a>
-                </li>
-                @elseif(auth()->user()->role == '3')
-                <li class="nav-item">
-                    <a href="{{ route('manager.dashboard') }}" class="nav-link">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('manager.user') }}" class="nav-link">User</a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ route('user.dashboard') }}" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('user.proposals') }}" class="nav-link">Proposal List</a>
+                    </li>
+                    @elseif(auth()->user()->role == '2')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.dashboard') }}" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.user') }}" class="nav-link">User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.manager') }}" class="nav-link">Manager</a>
+                    </li>
+                    @elseif(auth()->user()->role == '3')
+                    <li class="nav-item">
+                        <a href="{{ route('manager.dashboard') }}" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('manager.user') }}" class="nav-link">User</a>
+                    </li>
                 @endif
             </ul>
             @if(auth()->user()->role == '1')
@@ -69,10 +69,10 @@
                 </ul>
             </li>
             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                    <div class="flex-shrink-0 mr-3">
-                        <img class="h-10 w-10 rounded-full object-cover" style="width: 35px;" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                    </div>
-                @endif
+                <div class="flex-shrink-0 mr-3">
+                    <img class="h-10 w-10 rounded-full object-cover" style="width: 35px;" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                </div>
+            @endif
         </ul>
     </div>
 </nav>

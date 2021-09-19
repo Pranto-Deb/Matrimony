@@ -3,7 +3,9 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        @if(!empty($users))
+        @if(!empty($users) && count($users) > 0)
+        <?php $sents = $sent_ids; ?>
+        <?php $sentIds = $sents->pluck('receiver_id')->toArray(); ?>
             @foreach($users as $user)
                 <div class="col-md-4">
                     <div class="card card-widget widget-user">
@@ -35,7 +37,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ route('send.proposal', $user->id) }}" class="btn btn-success btn-block"><b>Send Proposal</b></a>
+                            @if(in_array($user->id, $sentIds))
+                                <?php $proposal = $sents->where('receiver_id', $user->id)->first(); ?>
+                                @if(!empty($proposal) && $proposal->status == 0)
+                                    <a href="{{ route('cancel.proposal', $proposal->id) }}" class="btn btn-secondary btn-block"><b>Cancel Proposal</b></a>
+                                @else
+                                    <a href="{{ route('send.proposal', $user->id) }}" class="btn btn-success btn-block"><b>Match</b></a>
+                                @endif
+                            @else
+                                <a href="{{ route('send.proposal', $user->id) }}" class="btn btn-primary btn-block"><b>Send Proposal</b></a>
+                            @endif
                         </div>
                     </div>
                 </div>

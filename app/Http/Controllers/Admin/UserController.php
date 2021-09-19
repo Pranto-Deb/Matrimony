@@ -11,10 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::where('role', 1)
-                    ->orderBy('id', 'desc')
-                    ->simplePaginate(10);
-                    
+        $users = User::where('role', 1)->orderBy('id', 'desc')->simplePaginate(10);
         return view('admin.user.index', compact('users'));
     }
 
@@ -53,21 +50,21 @@ class UserController extends Controller
         }
         $user->save();
 
-        session()->flash('success', 'A new user added successfully !!');
 
         if(auth()->user()->role == "2"){
-            return redirect()->route('admin.user');
+            return redirect()->route('admin.user')->with('success', 'A user added successfully!!');
         }
         else
         {
-            return redirect()->route('manager.user');   
+            return redirect()->route('manager.user')->with('success', 'A user added successfully!!');   
         }
     }
 
     public function show($id)
     {
+        $users = User::where('role', 1)->orderBy('id', 'desc')->simplePaginate(10);
     	$user = User::find($id);
-        return view('admin.user.show', compact('user'));
+        return view('admin.user.show', compact('user', 'users'));
     }
 
     public function updateStatus($id, $status)
@@ -114,14 +111,12 @@ class UserController extends Controller
         }
         $user->save();
 
-        session()->flash('success', 'User updated successfully !!');
-
         if(auth()->user()->role == "2"){
-            return redirect()->route('admin.user');
+            return redirect()->route('admin.user')->with('success', 'A user updated successfully!!');
         }
         else
         {
-            return redirect()->route('manager.user');   
+            return redirect()->route('manager.user')->with('success', 'A user updated successfully!!');   
         }
     }
 
@@ -130,9 +125,7 @@ class UserController extends Controller
     	$user = User::find($id);
         $user->delete();
 
-        session()->flash('success', 'A User deleted successfully !!');
-        return redirect()->back();
-        
+        return redirect()->back()->with('success', 'A user deleted successfully!!');
     }
 
 }
