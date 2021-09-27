@@ -57,7 +57,7 @@
                                     @elseif($proposal->status == '1')
                                         <span class="badge badge-success">Accepted</span>
                                     @elseif($proposal->status == '2')
-                                    <span class="badge badge-danger">Rejected</span>
+                                        <span class="badge badge-danger">Rejected</span>
                                     @endif
                                 </td>
                                 <td>
