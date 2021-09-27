@@ -112,7 +112,7 @@ class UserController extends Controller
         $user->save();
 
         if(auth()->user()->role == "2"){
-            return redirect()->route('admin.user')->with('success', 'A user updated successfully!!');
+            return redirect()->back()->with('success', 'A user updated successfully!!');
         }
         else
         {

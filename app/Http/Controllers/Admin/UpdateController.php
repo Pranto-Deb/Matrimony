@@ -36,8 +36,7 @@ class UpdateController extends Controller
         }
         $user->save();
 
-        session()->flash('success', 'User profile has updated successfully !!');
-    	return redirect()->route('customer.dashboard'); 
+    	return redirect()->back()->with('success', 'User profile has updated successfully !!'); 
     }
 
     public function updatePassword(Request $request)
@@ -52,7 +51,6 @@ class UpdateController extends Controller
         }
         $user->save();
 
-    	session()->flash('success', 'User password has Changed successfully !!');
-        return redirect()->back(); 
+        return redirect()->back()->with('success', 'User password has Changed successfully !!'); 
     }
 }

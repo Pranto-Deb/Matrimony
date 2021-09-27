@@ -65,12 +65,12 @@
                                     </td>
                                     <td class="text-center">
                                         @if(auth()->user()->role == '2')
-                                        <a href="{{ route('show.user', $user->id) }}" class="btn btn-success btn-sm btn-block">View</a>
-                                        <a href="{{ route('edit.user', $user->id) }}" class="btn btn-info btn-sm btn-block">Edit</a>
-                                        <a href="{{ route('delete.user', $user->id) }}" class="btn btn-danger btn-sm btn-block">Delete</a>
+                                            <a href="{{ route('show.user', $user->id) }}" class="btn btn-success btn-sm btn-block">View</a>
+                                            <a href="{{ route('edit.user', $user->id) }}" class="btn btn-info btn-sm btn-block">Edit</a>
+                                            <a href="{{ route('delete.user', $user->id) }}" class="btn btn-danger btn-sm btn-block">Delete</a>
                                         @else
-                                        <a href="{{ route('manager.show.user', $user->id) }}" class="btn btn-success btn-sm btn-block">View</a>
-                                        <a href="{{ route('manager.edit.user', $user->id) }}" class="btn btn-info btn-sm btn-block">Edit</a>
+                                            <a href="{{ route('manager.show.user', $user->id) }}" class="btn btn-success btn-sm btn-block">View</a>
+                                            <a href="{{ route('manager.edit.user', $user->id) }}" class="btn btn-info btn-sm btn-block">Edit</a>
                                         @endif
                                     </td>
                                 </tr>

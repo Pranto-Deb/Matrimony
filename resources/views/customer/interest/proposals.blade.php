@@ -17,10 +17,10 @@
                                     <th>Email</th>
                                     <th>Phone No</th>
                                     <th style="width: 40px">Status</th>
+                                    <th style="width: 20px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                
                             @if(!empty($proposals) && count($proposals) > 0)
                                 @foreach($proposals as $proposal)
                                     <tr>
@@ -33,8 +33,17 @@
                                                 <span class="badge badge-info">Pending</span>
                                             @elseif($proposal->status == '1')
                                                 <span class="badge badge-success">Accepted</span>
-                                            @elseif($proposal->status == '2')
+                                            @else($proposal->status == '2')
                                                 <span class="badge badge-danger">Rejected</span>
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            @if($proposal->status == 0)
+                                                <a href="{{ route('cancel.proposal', $proposal->id) }}" class="btn btn-danger btn-sm btn-block">Cancel</a>
+                                            @elseif($proposal->status == '1')
+                                                <a href="{{ route('cancel.proposal', $proposal->id) }}" class="btn btn-danger btn-sm btn-block">Cancel</a>
+                                            @else($proposal->status == '2')
+                                                <a href="{{ route('send.proposal', $proposal->receiver->id) }}" class="btn btn-success btn-sm btn-block"><b>Send</b></a>
                                             @endif
                                         </td>
                                     </tr> 
